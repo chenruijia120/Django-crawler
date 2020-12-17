@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="referrer" content="never">
+    <title>演员列表页</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+</head>
+<body>
+
+<div class="header">
+    <h1>演员列表页</h1>
+    <p class="ps">为您展示(来自豆瓣的)华语、日韩电影的演员信息</p>
+    <br>
+</div>
+
+
+<div class="navigator">
+    <a class="navigator" href="/search/">搜索</a>
+    <a class="navigator" href="/movie/">影视列表页</a>
+    <a class="navigator" href="/actor/">演员列表页</a>
+</div>
+<br>
+
+<br>
+<div class="container">
+    <div class="center" >
+    <div class="report">
+        <p>一共有{{ len }}位演员。</p>
+    </div>
+        <ul>
+            {% for a in actor %}
+                <li  class="item">
+                <span>
+                    <a href="/actor/{{ a.id }}"><img src={{ a.pic_link }}></a>
+                    <br>
+                </span>
+                <span>
+                    <a href="/actor/{{ a.id }}">{{ a.name }}</a>
+                </span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+<form action="#" class="pagination" method="get">
+    <span class="step-links">
+        {% if actor.has_previous %}
+            <a href="?{{ other_string }}&page=1">&laquo; 首页</a>
+            <a href="?{{ other_string }}&page={{ actor.previous_page_number }}">上一页</a>
+        {% endif %}
+
+        <span class="current">
+            <input type="submit" value="跳至" id="jump_button">
+            <input type="hidden" value="{{ keyword }}" name="keyword" />
+            <input type="text" value="{{ result.number }}" placeholder="页码" id="page" name="page" />
+            / {{ actor.paginator.num_pages }} 页
+
+        </span>
+
+        {% if actor.has_next %}
+            <a href="?{{ other_string }}&page={{ actor.next_page_number }}">下一页</a>
+            <a href="?{{ other_string }}&page={{ actor.paginator.num_pages }}">尾页 &raquo;</a>
+        {% endif %}
+    </span>
+</form>
+
+</div>
+
+<footer>by CRJ</footer>
+</body>
+</html>

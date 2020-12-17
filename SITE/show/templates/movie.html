@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="referrer" content="never">
+    <title>{{ movie.title }} 详情</title>
+    <link rel="stylesheet" href="{% static 'show.css' %}">
+</head>
+<body>
+<div class="navigator">
+    <a class="navigator" href="/search/">搜索</a>
+    <a class="navigator" href="/movie/">影视列表页</a>
+    <a class="navigator" href="/actor/">演员列表页</a>
+</div>
+<br>
+
+<div class="header">
+    <h1>{{ movie.title }}</h1>
+</div>
+<div class="container">
+<div class="content">
+    <div class="pic">
+        <span>
+        <img src={{ movie.pic_link }}>
+        </span>
+    </div>
+    <div class="info">
+        <span>导演：{{ movie.director }}</span>
+        <br>
+        <p></p>
+        <span>编剧：{{ movie.screenwriter }}</span>
+        <br>
+        <p></p>
+        <span>类型：{{ movie.type }}</span>
+    </div>
+</div>
+    <div class="desc">
+        <h2>剧情简介</h2>
+        <p><span>
+            {{ movie.desc }}
+        </span></p>
+    </div>
+    <div class="comment">
+        <p></p>
+        <h2>影评</h2>
+        <ul>
+                <li><p><span>{{ movie.comment1 }}</span></p></li>
+                <li><p><span>{{ movie.comment2 }}</span></p></li>
+                <li><p><span>{{ movie.comment3 }}</span></p></li>
+                <li><p><span>{{ movie.comment4 }}</span></p></li>
+                <li><p><span>{{ movie.comment5 }}</span></p></li>
+        </ul>
+    </div>
+    <div class="actor">
+        <h2>演员信息</h2>
+        <ul>
+            {% for a in actors %}
+                <li class="item">
+                <a>
+                    <a href="/actor/{{ a.id }}"><img src={{ a.pic_link }}></a>
+                    <br>
+                    姓名：<a href="/actor/{{ a.id }}">{{ a.name }}</a>
+                    <br>
+                    简介：{{ a.desc.0 }}{{ a.desc.1 }}{{ a.desc.2 }}{{ a.desc.3 }}{{ a.desc.4 }}{{ a.desc.5 }}...
+                    <br>
+                </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+</div>
+<footer>by CRJ</footer>
+</body>
+</html>

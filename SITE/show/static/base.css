@@ -1,0 +1,145 @@
+/************************以下为页面整体布局********************************/
+
+ 
+/* body 样式 */
+body {
+    font-family: songti, sans-serif;
+    margin: 0;
+}
+ 
+/* 标题 */
+.header {
+    padding: 15px;
+    text-align: center;
+    background: #E6E6FA;
+    color: #000000;
+    margin: 10px;
+    font-family: youyuan;
+}
+ 
+/* 标题字体加大 */
+.header h1 {
+    font-size: 48px;
+}
+/* 导航 */
+.navigator {
+    overflow: no-display;
+    background-color: #B0C4DE;
+}
+ 
+/* 导航栏样式 */
+.navigator a {
+    overflow: no-display;
+    text-align: center;
+    float: left;
+    display: block;
+    color: black;
+    font-family: youyuan;
+    padding-bottom: 14px;
+    padding-top: 14px;
+    text-decoration: none;
+    width: 33.33%;
+}
+
+ 
+/* 鼠标移动到链接的颜色 */
+.navigator a:hover {
+    background-color: #ddd;
+    color: black;
+}
+ 
+
+.ps{
+    color: #708090;
+    font-family: kaiti;
+}
+ 
+/* 底部 */
+
+footer {
+    position: fixed;
+    background-color: #FFF0F5;
+    border: slategrey;
+    border-style: solid;
+    border-width: thin;
+    color: #000000;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+/**************************************以下为主体部分************************************/
+
+
+
+/* 主要的内容区域 */
+.center {
+    background-color: white;
+}
+
+.report{
+    padding: 20px;
+    padding-bottom: 0px;
+    text-align: center;
+    color: slategrey;
+}
+
+.item{
+    float: left;
+    display: block;
+    text-align: center;
+    width: 20%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 0;
+    padding-top: 10px;
+    height: 350px;
+    border: #B0C4DE;
+    border-radius: 15px;
+    border-style: dashed;
+    border-width: medium;
+}
+.item img{
+    width:200px;
+    height: 300px;
+}
+ul{
+    padding: 0;
+}
+/*********************************以下为分页按钮****************************************/
+
+/* 分页按钮 */
+.pagination{
+    width: 100%;
+    margin: 30px 0 50px;
+    text-align: center;
+    float: bottom;
+}
+
+/* 跳转按钮 */
+#jump_button {
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    text-decoration:underline;
+    color: #000080;
+}
+
+#jump_button:hover {
+    color: #0000ff;
+    cursor:pointer
+}
+
+/* 页码输入框 */
+#page {
+    width: 50px;
+}
+

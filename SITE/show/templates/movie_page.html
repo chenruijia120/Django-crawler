@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="referrer" content="never">
+    <title>影视列表页</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+</head>
+<body>
+
+<div class="header">
+    <h1>影视列表页</h1>
+    <p class="ps">为您展示(来自豆瓣的)华语、日韩电影</p>
+    <br>
+</div>
+
+
+<div class="navigator">
+    <a class="navigator" href="/search/">搜索</a>
+    <a class="navigator" href="/movie/">影视列表页</a>
+    <a class="navigator" href="/actor/">演员列表页</a>
+</div>
+<br>
+
+<br>
+    <div class="center" >
+    <div class="report">
+        <p>一共有{{ len }}部电影。</p>
+    </div>
+        <ul>
+            {% for m in movie %}
+                <li class="item">
+                <span>
+                    <a href="/movie/{{ m.id }}"><img src={{ m.pic_link }}></a>
+                    <br>
+                </span>
+                <span>
+                    <a href="/movie/{{ m.id }}">{{ m.title }}</a>
+                </span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+<form action="#" class="pagination" method="get">
+    <span class="step-links">
+        {% if movie.has_previous %}
+            <a href="?{{ other_string }}&page=1">&laquo; 首页</a>
+            <a href="?{{ other_string }}&page={{ movie.previous_page_number }}">上一页</a>
+        {% endif %}
+
+        <span class="current">
+            <input type="submit" value="跳至" id="jump_button">
+            <input type="hidden" value="{{ keyword }}" name="keyword" />
+            <input type="text" value="{{ result.number }}" placeholder="页码" id="page" name="page" />
+            / {{ movie.paginator.num_pages }} 页
+
+        </span>
+
+        {% if movie.has_next %}
+            <a href="?{{ other_string }}&page={{ movie.next_page_number }}">下一页</a>
+            <a href="?{{ other_string }}&page={{ movie.paginator.num_pages }}">尾页 &raquo;</a>
+        {% endif %}
+    </span>
+</form>
+
+<footer>by CRJ</footer>
+</body>
+</html>

@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="referrer" content="never">
+    <title>搜索影评</title>
+    <link rel="stylesheet" href="{% static 'search.css' %}">
+</head>
+<body>
+<div class="navigator">
+    <a class="navigator" href="/search/">搜索</a>
+    <a class="navigator" href="/movie/">影视列表页</a>
+    <a class="navigator" href="/actor/">演员列表页</a>
+</div>
+<div class="center">
+<br>
+{% if cost %}
+    <div class="report">
+        <p>搜索到{{ total }}个结果，用时{{ cost }}秒。</p>
+    </div>
+
+    <div class="text-center" >
+        <ul>
+            {% for c in comment %}
+                <li   class="item">
+                <span>
+                    <a href="/movie/{{ c.0.id }}">{{ c.0.title }}</a><br>
+
+                    <p>{{ c.1 }}</p>
+                </span>
+                </li>
+                <br>
+            {% endfor %}
+        </ul>
+    </div>
+<form action="/search/{{ other_string }}" class="pagination" method="get">
+    <span class="step-links">
+        {% if comment.has_previous %}
+            <a href="?{{ other_string }}&page=1">&laquo; 首页</a>
+            <a href="?{{ other_string }}&page={{ comment.previous_page_number }}">上一页</a>
+        {% endif %}
+
+        <span class="current">
+            <input type="submit" value="跳至" id="jump_button">
+            <input type="text" value="{{ page }}" placeholder="页码" id="page" name="page" />
+            / {{ comment.paginator.num_pages }} 页
+
+        </span>
+
+        {% if comment.has_next %}
+            <a href="?{{ other_string }}&page={{ comment.next_page_number }}">下一页</a>
+            <a href="?{{ other_string }}&page={{ comment.paginator.num_pages }}">尾页 &raquo;</a>
+        {% endif %}
+    </span>
+</form>
+{% endif %}
+</div>
+<footer>by CRJ</footer>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="referrer" content="never">
+    <title>搜索</title>
+    <link rel="stylesheet" href="{% static 'search.css'%}">
+</head>
+<body>
+<div class="navigator">
+    <a class="navigator" href="/search/">搜索</a>
+    <a class="navigator" href="/movie/">影视列表页</a>
+    <a class="navigator" href="/actor/">演员列表页</a>
+</div>
+<br>
+<p>
+
+</p>
+<div class="stoolbox">
+<form action="/search/" class="search_area" method="get">
+    <div class="words">
+    搜索类型：<input type="radio" value="movie" name="choice" checked="checked">影视
+            <input type="radio" value="actor" name="choice" >演员
+            <input type="radio" value="comment" name="choice">影评
+    </div>
+    <br>
+    <div class="box">
+    <img src="https://raw.githubusercontent.com/Yani-web/item-practice/master/01.%20Google%20pages/images/search.png" class="mg">
+    <input type="search" name="keyword" class="search-box"  placeholder="请输入关键字"
+           id="search"
+           autofocus value="{{ keyword | safe }}"  maxlength="20">
+    </div>
+    <div class="pushbutton">
+    <input type="submit" value="搜索一下">
+    </div>
+</form>
+</div>
+<footer>by CRJ</footer>
+
+</body>
+</html>

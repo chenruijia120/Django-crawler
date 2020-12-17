@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="referrer" content="never">
+    <title>{{ actor.name }} 详情</title>
+    <link rel="stylesheet" href="{% static 'show.css' %}">
+</head>
+<body>
+<div class="navigator">
+    <a class="navigator" href="/search/">搜索</a>
+    <a class="navigator" href="/movie/">影视列表页</a>
+    <a class="navigator" href="/actor/">演员列表页</a>
+</div>
+<br>
+<div class="header">
+    <h1>{{ actor.name }}</h1>
+</div>
+
+<div class="container">
+<div class="content">
+    <div class="pic">
+        <span>
+        <img src={{ actor.pic_link }}>
+        </span>
+    </div>
+    <div class="info">
+        <span>{{ actor.other }}：{{ actor.otherinfo }}</span>
+        <br>
+    </div>
+</div>
+    <div class="desc">
+        <h2>演员简介</h2>
+        <p><span>
+            {{ actor.desc }}
+        </span></p>
+    </div>
+<div class="actors">
+    <div class="actor">
+        <h2>参演电影</h2>
+        <ul>
+            {% for m in movies %}
+                <li class="item">
+                    <a href="/movie/{{ m.id }}">{{ m.title }}</a>
+                    <br>
+                    <a href="/movie/{{ m.id }}"><img src={{ m.pic_link }}></a>
+                    <br>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <p></p>
+    <div class="co-actor">
+            <h2>合作演员</h2>
+                <ul>
+                    {% for a in co_actors %}
+                    <li class="item">
+                    <a href="/actor/{{ a.0.id }}">{{ a.0.name }}</a>
+                    <br>
+                    <a href="/actor/{{ a.0.id }}"><img src={{ a.0.pic_link }}></a>
+                    <br>
+                    <span>合作次数：{{ a.1 }}</span>
+                    <br>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+    </div>
+</div>
+
+</div>
+<footer>by CRJ</footer>
+</body>
+</html>
